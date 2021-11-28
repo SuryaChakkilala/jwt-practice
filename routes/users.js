@@ -90,4 +90,11 @@ router.put('/:id', async(req, res)=>{
     res.status(201).send(user)
 })
 
+router.delete('/:id', async(req, res)=>{
+    const user = await User.findByIdAndDelete(req.params.id)
+
+    if(!user) return res.status(404).json({success: false})
+    res.status(201).send(user)
+})
+
 module.exports = router
